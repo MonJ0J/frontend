@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './Styles/CreateAccount.css';
 
 function CreateAccount() {
+  const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -73,6 +77,8 @@ function CreateAccount() {
           alert('Password must be at least 8 characters long!');
           return;
         }
+
+        navigate('/jobseeker');
         // window.location.href = '/user'; // Replace '/user' with your actual route
       };
     return (
@@ -99,7 +105,8 @@ function CreateAccount() {
         <br />
             <label>
                 Password:
-                <input type="password" name="password" />
+                <input type="password" name="password" value={formData.password}
+    onChange={handleInputChange}/>
             </label>
         <br />
         <button type="submit" className="button_create" disabled={isButtonDisabled}>Sign Up</button>
