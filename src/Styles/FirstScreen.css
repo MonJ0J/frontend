@@ -1,34 +1,57 @@
-/* Ensure the HTML and body take up the full height of the viewport */
-html, body {
+.first-screen-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* Distributes space evenly among children */
+    align-items: center;
+    height: 100vh; /* Full viewport height */
     margin: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+    padding: 20px; /* Some padding so elements aren't flush against the edges */
   }
   
-  /* Main app container to span full height */
-  .App {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  /* First screen content fills available space */
-  .first-screen {
-    flex: 1; /* Ensures the main content grows and pushes the footer down */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centers content vertically */
-    align-items: center; /* Centers content horizontally */
+  .first-screen-header {
     text-align: center;
-    padding: 20px;
   }
   
-  /* Footer is styled globally (already in Footer component) */
-  footer {
-    background-color: #003366;
-    color: white;
+  .first-screen-title {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  .crown-logo img {
+    max-height: 30vh; /* Restrict height to allow all content to fit */
+    width: auto;
+    object-fit: contain;
+  }
+  
+  .first-screen-content {
     text-align: center;
-    padding: 10px 0;
+  }
+  
+  .first-screen-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .first-screen-button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .first-screen-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #3b82f6;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .first-screen-button:hover {
+    background-color: #2563eb;
   }
   
