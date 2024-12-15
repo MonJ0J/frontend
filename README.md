@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# CU Gigs Backend and Frontend Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Flask Server (Backend)
+The Flask server provides a simple RESTful API for managing a list of jobs. It runs on `http://127.0.0.1:5000` by default and supports:
 
-## Available Scripts
+- **GET /jobs**: Returns a list of all available job postings in JSON format.
+- **POST /jobs**: Accepts a JSON payload to create a new job and appends it to the in-memory list. Returns the newly created job as JSON.
+- **DELETE /jobs/<job_id>**: Deletes the job with the specified `job_id` from the in-memory list. Returns an empty response with a `204` status code.
 
-In the project directory, you can run:
+The server uses `flask_cors` to allow cross-origin requests from the React frontend.
 
-### `npm start`
+## JobSeeker (React Frontend)
+The JobSeeker page:
+- Fetches the list of jobs from the Flask server using a GET request.
+- Displays all available jobs to the user.
+- Allows filtering of jobs by date, time, location, and minimum rating.
+- Lets the user remove a job by clicking the `X` button. When clicked, a DELETE request is sent to the server, and if successful, the job is removed from the list.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## PostJob (React Frontend)
+The PostJob page:
+- Provides a form for creating a new job post.
+- On submission, it sends a POST request with the job details to the Flask server.
+- If successful, the new job is added to the in-memory list on the server side, and the user is navigated back to the JobSeeker page to see the updated list of jobs.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Note:** There is no persistent database storage. All data is held in memory and will reset when the Flask server restarts.
